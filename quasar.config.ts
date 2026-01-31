@@ -3,8 +3,9 @@
 
 import { defineConfig } from '#q-app/wrappers';
 import { fileURLToPath } from 'node:url';
+import UnoCSS from 'unocss/vite';
 
-export default defineConfig((ctx) => {
+export default defineConfig((ctx): any => {
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -12,7 +13,7 @@ export default defineConfig((ctx) => {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['i18n', 'axios'],
+    boot: ['i18n', 'axios', 'uno'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
     css: ['app.scss'],
@@ -60,7 +61,12 @@ export default defineConfig((ctx) => {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf (viteConf) {},
+      extendViteConf (viteConf: any) {
+        const uno = UnoCSS()
+        if (!viteConf.plugins) viteConf.plugins = []
+        if (Array.isArray(uno)) viteConf.plugins.push(...uno)
+        else viteConf.plugins.push(uno)
+      },
       // viteVuePluginOptions: {},
 
       vitePlugins: [
@@ -92,6 +98,8 @@ export default defineConfig((ctx) => {
           },
           { server: false },
         ],
+
+        // [UnoCSS(), {}]
       ],
     },
 
