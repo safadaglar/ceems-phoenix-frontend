@@ -2,12 +2,12 @@
   <q-layout view="lHh Lpr lff" class="bg-gray-50 font-sans text-gray-800">
     
     <q-header class="bg-white/90 backdrop-blur-md border-b border-gray-100 h-[80px] flex items-center fixed w-full z-50 text-gray-800">
-      <div class="layout-container w-full flex items-center justify-between">
+      <q-toolbar class="layout-container w-full flex items-center justify-between">
         
         <div class="flex items-center gap-2 cursor-pointer group" @click="$router.push('/')">
-          <div class="w-10 h-10 bg-gradient-to-tr from-brand-400 to-brand-600 rounded-xl flex items-center justify-center text-white shadow-brand-500/30 shadow-lg group-hover:scale-105 transition-transform duration-300">
-            <div class="i-mdi-leaf text-2xl"></div>
-          </div>
+          <q-avatar size="64px">
+            <img src="~assets/favico.jpg"> 
+          </q-avatar>
           <div class="flex flex-col">
             <span class="font-display font-bold text-xl leading-none text-gray-900 tracking-tight">VITA<span class="text-brand-500">CORE</span></span>
             <span class="text-[10px] text-gray-400 font-bold tracking-[0.2em] uppercase mt-1">Natural Health</span>
@@ -40,7 +40,7 @@
             <div class="i-mdi-menu text-2xl"></div>
           </button>
         </div>
-      </div>
+      </q-toolbar>
     </q-header>
 
     <q-drawer
