@@ -1,6 +1,7 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="tr">
   <head>
+    <!-- Sekme başlığı: quasar.config.ts içindeki productName'i çeker -->
     <title><%= productName %></title>
 
     <meta charset="utf-8" />
@@ -12,6 +13,7 @@
       content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
     />
 
+    <!-- İkon Dosyaları -->
     <link rel="icon" type="image/png" sizes="128x128" href="icons/favicon-128x128.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png" />
@@ -19,6 +21,7 @@
     <link rel="icon" type="image/ico" href="favicon.ico" />
   </head>
   <body>
+    <!-- Quasar uygulamasının yükleneceği ana nokta -->
     <!-- quasar:entry-point -->
   </body>
 </html>

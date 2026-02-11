@@ -1,8 +1,8 @@
 {
-  "name": "q",
+  "name": "ceems-phoenix-frontend",
   "version": "0.0.1",
-  "description": "A Quasar Project",
-  "productName": "Quasar App",
+  "description": "CEEMS Phoenix - Management System",
+  "productName": "CEEMS Phoenix",
   "author": "Sefa Dağlar <sefa_8706@hotmail.com>",
   "type": "module",
   "private": true,

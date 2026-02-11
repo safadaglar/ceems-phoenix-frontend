@@ -7,6 +7,9 @@ import UnoCSS from 'unocss/vite';
 
 export default defineConfig((ctx): any => {
   return {
+    // Uygulamanın görünen adı
+    productName: 'CEEMS Phoenix',
+
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
 
@@ -173,7 +176,11 @@ export default defineConfig((ctx): any => {
       workboxMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       // swFilename: 'sw.js',
       // manifestFilename: 'manifest.json',
-      // extendManifestJson (json) {},
+      extendManifestJson (json: any) { // BURASI GÜNCELLENDİ: json -> json: any
+        json.name = 'CEEMS Phoenix'
+        json.short_name = 'CEEMS Phoenix'
+        json.description = 'CEEMS Phoenix Management System'
+      },
       // useCredentialsForManifestTag: true,
       // injectPwaMetaTags: false,
       // extendPWACustomSWConf (esbuildConf) {},
@@ -220,7 +227,7 @@ export default defineConfig((ctx): any => {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'q',
+        appId: 'ceems-phoenix-frontend',
       },
     },
 
