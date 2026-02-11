@@ -4,11 +4,15 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    children: [
+      { path: '', component: () => import('pages/IndexPage.vue') },
+      { path: 'products', component: () => import('pages/ProductsPage.vue') },
+      { path: 'corporate', component: () => import('pages/CorporatePage.vue') },
+      { path: 'contact', component: () => import('pages/ContactPage.vue') },
+    ],
   },
 
-  // Always leave this as last one,
-  // but you can also remove it
+  // Hata sayfası (404)
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
