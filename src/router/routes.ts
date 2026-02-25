@@ -8,11 +8,10 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: 'products', component: () => import('pages/ProductsPage.vue') },
       { path: 'corporate', component: () => import('pages/CorporatePage.vue') },
+      { path: 'about', component: () => import('pages/AboutPage.vue') },
       { path: 'contact', component: () => import('pages/ContactPage.vue') },
     ],
   },
-
-  // Hata sayfası (404)
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),

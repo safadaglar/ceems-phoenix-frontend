@@ -1,171 +1,67 @@
 <template>
   <q-layout view="lHh Lpr lff" class="bg-gray-50 font-sans text-gray-800">
     
-    <q-header class="bg-white/90 backdrop-blur-md border-b border-gray-100 h-[80px] flex items-center fixed w-full z-50 text-gray-800">
-      <q-toolbar class="layout-container w-full flex items-center justify-between">
+    <!-- ÜST BAR (HEADER) -->
+    <q-header class="bg-white text-gray-800 border-b border-gray-200">
+      <q-toolbar class="q-py-sm q-px-md flex justify-between items-center" style="height: 80px; max-width: 1200px; margin: 0 auto;">
         
-        <!-- Logo ve Marka İsmi -->
-        <div class="flex items-center gap-2 cursor-pointer group" @click="$router.push('/')">
-          <q-avatar size="64px">
+        <!-- SOL: LOGO -->
+        <div class="flex items-center gap-2 cursor-pointer" @click="$router.push('/')">
+          <q-avatar size="50px">
             <img src="~assets/logo.png"> 
           </q-avatar>
           <div class="flex flex-col">
-            <span class="font-display font-bold text-xl leading-none text-gray-900 tracking-tight uppercase">
-              CEEMS <span class="text-brand-500">PHOENIX</span>
+            <span class="text-weight-bold text-h6 q-line-height-1 uppercase text-black">
+              CEEMS <span class="text-primary">PHOENIX</span>
             </span>
-            <span class="text-[10px] text-gray-400 font-bold tracking-[0.2em] uppercase mt-1">Management System</span>
+            <span class="text-caption text-grey-6 text-weight-bold uppercase" style="font-size: 10px; letter-spacing: 1px;">Management System</span>
           </div>
         </div>
 
-        <!-- Masaüstü Navigasyon -->
-        <nav class="hidden md:flex items-center gap-8">
-          <router-link to="/" class="nav-link" active-class="text-brand-600 font-bold">Anasayfa</router-link>
-          <router-link to="/devices" class="nav-link" active-class="text-brand-600 font-bold">Cihazlar</router-link>
-          <router-link to="/reports" class="nav-link" active-class="text-brand-600 font-bold">Raporlar</router-link>
-          <router-link to="/contact" class="nav-link" active-class="text-brand-600 font-bold">İletişim</router-link>
-        </nav>
+        <!-- SAĞ: NAVİGASYON LİNKLERİ -->
+        <div class="flex items-center no-wrap">
+          <nav class="flex items-center q-gutter-x-lg q-mr-md">
+            <router-link to="/corporate" class="my-nav-link">Kurumsal</router-link>
+            <router-link to="/about" class="my-nav-link">Hakkında</router-link>
+            <router-link to="/products" class="my-nav-link">Ürünler</router-link>
+            <router-link to="/contact" class="my-nav-link">İletişim</router-link>
+          </nav>
 
-        <div class="flex items-center gap-2">
-          <button class="p-2 text-gray-400 hover:text-brand-600 transition-colors rounded-full hover:bg-gray-100">
-            <div class="i-mdi-web text-xl"></div>
-          </button>
-
-          <button class="p-2 text-gray-600 hover:text-brand-600 transition-colors rounded-full hover:bg-gray-100 relative group mr-2">
-            <div class="i-mdi-bell-outline text-2xl"></div>
-            <span class="absolute top-1 right-0 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white">0</span>
-          </button>
-          
-          <button class="hidden md:flex btn-primary text-sm py-2 px-5 rounded-lg shadow-none">
-            <span>Giriş Yap</span>
-            <div class="i-mdi-login text-lg"></div>
-          </button>
-
-          <button class="md:hidden p-2 text-gray-800 hover:bg-gray-100 rounded-lg" @click="toggleLeftDrawer">
-            <div class="i-mdi-menu text-2xl"></div>
-          </button>
+          <!-- İkonlar -->
+          <div class="flex items-center q-gutter-x-sm border-left q-pl-md">
+            <q-btn flat round dense icon="language" color="grey-7" />
+            <q-btn flat round dense icon="notifications" color="grey-7">
+              <q-badge color="red" floating>0</q-badge>
+            </q-btn>
+          </div>
         </div>
+
       </q-toolbar>
     </q-header>
 
-    <!-- Yan Menü (Mobil) -->
-    <q-drawer
-      v-model="leftDrawerOpen"
-      side="right"
-      bordered
-      overlay
-      class="bg-white/95 backdrop-blur-xl"
-      :width="300"
-    >
-      <div class="flex flex-col h-full p-6">
-        <div class="flex justify-between items-center mb-10">
-          <span class="font-display font-bold text-xl text-gray-900">Menü</span>
-          <button @click="toggleLeftDrawer" class="p-2 bg-gray-50 hover:bg-gray-100 rounded-full text-gray-600 transition-colors">
-            <div class="i-mdi-close text-xl"></div>
-          </button>
-        </div>
-
-        <div class="space-y-2 flex flex-col">
-           <router-link to="/" class="text-lg font-medium text-gray-700 py-3 px-4 rounded-xl hover:bg-gray-50 hover:text-brand-600 transition-all" active-class="bg-brand-50 text-brand-700">Anasayfa</router-link>
-           <router-link to="/devices" class="text-lg font-medium text-gray-700 py-3 px-4 rounded-xl hover:bg-gray-50 hover:text-brand-600 transition-all" active-class="bg-brand-50 text-brand-700">Cihazlar</router-link>
-           <router-link to="/reports" class="text-lg font-medium text-gray-700 py-3 px-4 rounded-xl hover:bg-gray-50 hover:text-brand-600 transition-all" active-class="bg-brand-50 text-brand-700">Raporlar</router-link>
-           <router-link to="/contact" class="text-lg font-medium text-gray-700 py-3 px-4 rounded-xl hover:bg-gray-50 hover:text-brand-600 transition-all" active-class="bg-brand-50 text-brand-700">İletişim</router-link>
-        </div>
-
-        <div class="mt-auto pt-8 border-t border-gray-100">
-          <button class="w-full btn-primary justify-center mb-4">
-            Giriş Yap
-          </button>
-          <p class="text-center text-xs text-gray-400">© 2026 CEEMS Phoenix</p>
-        </div>
-      </div>
-    </q-drawer>
-
-    <q-page-container class="pt-[80px]">
-      <router-view v-slot="{ Component }">
-        <transition
-          enter-active-class="transition duration-300 ease-out"
-          enter-from-class="transform opacity-0 translate-y-4"
-          enter-to-class="transform opacity-100 translate-y-0"
-          leave-active-class="transition duration-200 ease-in"
-          leave-from-class="transform opacity-100"
-          leave-to-class="transform opacity-0"
-        >
-          <component :is="Component" />
-        </transition>
-      </router-view>
+    <!-- SAYFA İÇERİĞİ -->
+    <q-page-container class="q-pt-md">
+      <router-view />
     </q-page-container>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-20 mt-auto border-t border-gray-800">
-      <div class="layout-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-        
-        <div class="space-y-6">
-          <div class="flex items-center gap-2">
-            <div class="i-mdi-shield-check text-brand-500 text-2xl"></div>
-            <span class="font-display font-bold text-xl text-white uppercase">CEEMS <span class="text-brand-500">PHOENIX</span></span>
-          </div>
-          <p class="text-sm leading-relaxed text-gray-500">
-            Geleceğin teknolojisiyle güçlenen yönetim sistemleri. Güvenilir çözüm ortağınız ve profesyonel yönetim paneliniz.
-          </p>
-          <div class="flex gap-4">
-             <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-500 hover:text-white transition-all transform hover:-translate-y-1"><div class="i-mdi-linkedin text-xl"></div></a>
-             <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-500 hover:text-white transition-all transform hover:-translate-y-1"><div class="i-mdi-github text-xl"></div></a>
-             <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-500 hover:text-white transition-all transform hover:-translate-y-1"><div class="i-mdi-twitter text-xl"></div></a>
+    <!-- FOOTER -->
+    <footer class="bg-grey-10 text-grey-5 q-pa-xl mt-auto">
+      <div class="row q-col-gutter-lg justify-center" style="max-width: 1200px; margin: 0 auto;">
+        <div class="col-12 col-md-4">
+          <div class="text-white text-weight-bold q-mb-md uppercase">CEEMS Phoenix</div>
+          <div class="text-caption">Konuksever Mah. Gazi Bulvarı No:220 Muratpaşa/Antalya</div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="text-white text-weight-bold q-mb-md">HIZLI ERİŞİM</div>
+          <div class="column q-gutter-y-xs">
+            <router-link to="/products" class="text-grey-5 text-decoration-none">Ürünler</router-link>
+            <router-link to="/contact" class="text-grey-5 text-decoration-none">İletişim</router-link>
           </div>
         </div>
-
-        <div>
-          <h4 class="text-white font-display font-bold mb-6 text-lg">Hızlı Erişim</h4>
-          <ul class="space-y-3 text-sm">
-            <li><router-link to="/devices" class="hover:text-brand-500 transition-colors flex items-center gap-2"><div class="i-mdi-chevron-right text-xs"></div>Tüm Cihazlar</router-link></li>
-            <li><router-link to="/about" class="hover:text-brand-500 transition-colors flex items-center gap-2"><div class="i-mdi-chevron-right text-xs"></div>Kurumsal</router-link></li>
-            <li><router-link to="/updates" class="hover:text-brand-500 transition-colors flex items-center gap-2"><div class="i-mdi-chevron-right text-xs"></div>Güncellemeler</router-link></li>
-            <li><router-link to="/docs" class="hover:text-brand-500 transition-colors flex items-center gap-2"><div class="i-mdi-chevron-right text-xs"></div>Dokümantasyon</router-link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-white font-display font-bold mb-6 text-lg">Destek</h4>
-          <ul class="space-y-3 text-sm">
-            <li><a href="#" class="hover:text-brand-500 transition-colors">Sıkça Sorulan Sorular</a></li>
-            <li><a href="#" class="hover:text-brand-500 transition-colors">Teknik Destek</a></li>
-            <li><a href="#" class="hover:text-brand-500 transition-colors">Gizlilik Politikası</a></li>
-            <li><a href="#" class="hover:text-brand-500 transition-colors">Kullanım Koşulları</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-white font-display font-bold mb-6 text-lg">Bize Ulaşın</h4>
-          <ul class="space-y-5 text-sm">
-            <li class="flex items-start gap-3 group cursor-pointer">
-              <div class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-colors">
-                <div class="i-mdi-map-marker"></div>
-              </div>
-              <span class="mt-1 group-hover:text-gray-300 transition-colors">Maslak, Büyükdere Cd. No:123<br>Sarıyer/İstanbul</span>
-            </li>
-            <li class="flex items-center gap-3 group cursor-pointer">
-              <div class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-colors">
-                <div class="i-mdi-phone"></div>
-              </div>
-              <span class="mt-1 group-hover:text-gray-300 transition-colors">+90 (212) 000 00 00</span>
-            </li>
-            <li class="flex items-center gap-3 group cursor-pointer">
-              <div class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-brand-500 group-hover:bg-brand-500 group-hover:text-white transition-colors">
-                <div class="i-mdi-email"></div>
-              </div>
-              <span class="mt-1 group-hover:text-gray-300 transition-colors">info@ceemsphoenix.com</span>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-      
-      <div class="layout-container mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-        <p>&copy; 2026 CEEMS Phoenix. Tüm hakları saklıdır.</p>
-        <div class="flex gap-4 mt-4 md:mt-0 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-           <div class="flex items-center gap-1"><div class="i-mdi-security text-2xl"></div></div>
-           <div class="flex items-center gap-1"><div class="i-mdi-cloud-check text-2xl"></div></div>
-           <div class="flex items-center gap-1"><div class="i-mdi-database-check text-2xl"></div></div>
+        <div class="col-12 col-md-4">
+          <div class="text-white text-weight-bold q-mb-md uppercase">BİZE ULAŞIN</div>
+          <div class="text-caption">Tel: 0542 439 52 79</div>
+          <div class="text-caption uppercase">E-posta: info@ceemsphoenix.com</div>
         </div>
       </div>
     </footer>
@@ -174,15 +70,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const leftDrawerOpen = ref(false)
-
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+// Hatalı değişken silindi, script bloğu temizlendi.
 </script>
 
 <style scoped>
-/* UnoCSS sınıfları dışında gerekirse ek stiller buraya */
+.my-nav-link {
+  font-weight: 700;
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+.my-nav-link:hover {
+  color: #10b981;
+}
+.router-link-active {
+  color: #059669 !important;
+  border-bottom: 2px solid #059669;
+}
+.border-left {
+  border-left: 1px solid #e5e7eb;
+}
+.text-decoration-none {
+  text-decoration: none;
+}
 </style>
