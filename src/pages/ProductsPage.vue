@@ -1,22 +1,35 @@
 <template>
-  <q-page class="bg-gray-50 py-12">
+  <q-page class="bg-gray-50 py-16">
     <div class="layout-container">
-      <div class="mb-12">
-        <h1 class="text-3xl font-bold text-gray-900">Mito Serisi Katalogu</h1>
-        <p class="text-gray-500 mt-2">Yüksek teknolojili saşe çözümlerimiz.</p>
+      <div class="text-center mb-20">
+        <span class="text-brand-600 font-bold tracking-[0.2em] uppercase text-sm">Ürün Portföyü</span>
+        <h1 class="text-4xl font-bold text-gray-900 uppercase mt-4">MİTO SERİSİ KATALOGU</h1>
+        <q-separator color="brand-500" class="q-mt-md mx-auto" style="width: 60px; height: 3px;" />
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div v-for="(product, index) in products" :key="index" class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer hover:shadow-lg transition-all">
-          <div class="relative aspect-square bg-gray-100">
-            <q-img :src="product.image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div v-for="(product, index) in products" :key="index" class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-2xl transition-all duration-500 group border border-gray-100">
+          
+          <div class="aspect-square bg-gray-50 rounded-2xl mb-6 overflow-hidden border border-gray-50">
+            <q-img :src="product.image" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
           </div>
-          <div class="p-6">
-            <h3 class="text-lg font-bold text-gray-900 mb-2">{{ product.name }}</h3>
-            <p class="text-gray-500 text-sm line-clamp-2 mb-4">{{ product.description }}</p>
-            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-              <span class="font-bold text-primary">30 Saşe</span>
-              <q-btn round color="primary" icon="add_shopping_cart" unelevated size="sm" />
+
+          <div class="space-y-4">
+            <div>
+              <div class="text-[10px] text-brand-600 font-bold tracking-widest uppercase mb-1">CEEMS PHOENİX</div>
+              <h3 class="text-lg font-bold text-gray-900 leading-tight uppercase h-14 overflow-hidden">{{ product.name }}</h3>
+            </div>
+            
+            <p class="text-gray-500 text-xs leading-relaxed line-clamp-2 h-8">
+              {{ product.description }}
+            </p>
+            
+            <div class="flex items-center justify-between pt-4 border-t border-gray-50">
+              <div class="flex flex-col">
+                <span class="text-[10px] text-gray-400 uppercase">İçerik</span>
+                <span class="text-sm font-bold text-gray-900">30 SAŞE</span>
+              </div>
+              <q-btn unelevated color="primary" icon="shopping_cart" label="EKLE" class="rounded-xl px-4 text-xs font-bold" />
             </div>
           </div>
         </div>
@@ -26,10 +39,15 @@
 </template>
 
 <script setup lang="ts">
+import vioraImg from 'assets/mitoviora.jpg';
+import regenixImg from 'assets/mitoregenix.jpg';
+import androImg from 'assets/mitoandro.jpg';
+import ovaImg from 'assets/mitoova.jpg';
+
 const products = [
-  { name: 'MitoViora X-Y', description: 'Gelişmiş hücresel destek ve bağışıklık kompleksi.', image: 'https://images.unsplash.com/photo-1628771065518-0d82f1938462?auto=format&fit=crop&w=500&q=80' },
-  { name: 'MitoRegenix X-Y', description: 'Hücre yenilenmesi ve doku onarımı desteği.', image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80' },
-  { name: 'MitoAndro Y', description: 'Erkek sağlığına özel hormonel ve enerjik destek.', image: 'https://images.unsplash.com/photo-1550573104-4f3697611aa2?auto=format&fit=crop&w=500&q=80' },
-  { name: 'MitoOva X', description: 'Kadın sağlığına özel dengelleyici formül.', image: 'https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=500&q=80' }
+  { name: 'MitoViora X-Y', description: 'Gelişmiş hücresel destek ve bağışıklık kompleksi.', image: vioraImg },
+  { name: 'MitoRegenix X-Y', description: 'Hücre yenilenmesi ve doku onarımı desteği.', image: regenixImg },
+  { name: 'MitoAndro Y', description: 'Erkek sağlığına özel hormonal ve enerjik destek.', image: androImg },
+  { name: 'MitoOva X', description: 'Kadın sağlığına özel dengeleyici formül.', image: ovaImg }
 ];
 </script>
