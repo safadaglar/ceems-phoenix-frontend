@@ -8,7 +8,7 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div v-for="(product, index) in products" :key="index" class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-2xl transition-all duration-500 group border border-gray-100">
+        <div v-for="product in products" :key="product.id" class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-2xl transition-all duration-500 group border border-gray-100">
           
           <div class="aspect-square bg-gray-50 rounded-2xl mb-6 overflow-hidden border border-gray-50">
             <q-img :src="product.image" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -20,16 +20,19 @@
               <h3 class="text-lg font-bold text-gray-900 leading-tight uppercase h-14 overflow-hidden">{{ product.name }}</h3>
             </div>
             
-            <p class="text-gray-500 text-xs leading-relaxed line-clamp-2 h-8">
-              {{ product.description }}
-            </p>
-            
             <div class="flex items-center justify-between pt-4 border-t border-gray-50">
               <div class="flex flex-col">
-                <span class="text-[10px] text-gray-400 uppercase">İçerik</span>
-                <span class="text-sm font-bold text-gray-900">30 SAŞE</span>
+                <span class="text-sm font-bold text-primary">{{ product.price.toLocaleString('tr-TR') }} TL</span>
+                <span class="text-[10px] text-gray-400 uppercase">30 SAŞE</span>
               </div>
-              <q-btn unelevated color="primary" icon="shopping_cart" label="EKLE" class="rounded-xl px-4 text-xs font-bold" />
+              <q-btn 
+                unelevated 
+                color="primary" 
+                icon="shopping_cart" 
+                label="EKLE" 
+                class="rounded-xl px-4 text-xs font-bold" 
+                @click="addToCart(product)"
+              />
             </div>
           </div>
         </div>
@@ -39,15 +42,24 @@
 </template>
 
 <script setup lang="ts">
+import { useCartStore, type Product } from 'src/stores/cart';
 import vioraImg from 'assets/mitoviora.jpg';
 import regenixImg from 'assets/mitoregenix.jpg';
 import androImg from 'assets/mitoandro.jpg';
 import ovaImg from 'assets/mitoova.jpg';
 
-const products = [
-  { name: 'MitoViora X-Y', description: 'Gelişmiş hücresel destek ve bağışıklık kompleksi.', image: vioraImg },
-  { name: 'MitoRegenix X-Y', description: 'Hücre yenilenmesi ve doku onarımı desteği.', image: regenixImg },
-  { name: 'MitoAndro Y', description: 'Erkek sağlığına özel hormonal ve enerjik destek.', image: androImg },
-  { name: 'MitoOva X', description: 'Kadın sağlığına özel dengeleyici formül.', image: ovaImg }
+const cartStore = useCartStore();
+
+// Ürün listesini Product tipine uygun hale getirdik
+const products: Product[] = [
+  { id: 1, name: 'MitoViora X-Y', price: 1250, description: 'Gelişmiş hücresel destek.', image: vioraImg },
+  { id: 2, name: 'MitoRegenix X-Y', price: 1350, description: 'Hücre yenilenmesi.', image: regenixImg },
+  { id: 3, name: 'MitoAndro Y', price: 1150, description: 'Erkek sağlığına özel.', image: androImg },
+  { id: 4, name: 'MitoOva X', price: 1150, description: 'Kadın sağlığına özel.', image: ovaImg }
 ];
+
+// any yerine Product tipini kullandık
+function addToCart(product: Product) {
+  cartStore.addToCart(product);
+}
 </script>
