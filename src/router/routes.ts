@@ -10,6 +10,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'corporate', component: () => import('pages/CorporatePage.vue') },
       { path: 'about', component: () => import('pages/AboutPage.vue') },
       { path: 'contact', component: () => import('pages/ContactPage.vue') },
+      { path: 'cart', component: () => import('pages/CartPage.vue') }, // Sepet eklendi
     ],
   },
   {
